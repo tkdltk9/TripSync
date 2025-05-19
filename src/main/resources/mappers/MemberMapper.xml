@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="TripSync.mapper.MemberMapper">
+	<sql id="memberBaseColumns">
+		MEMBER_NUM, MEMBER_ID, MEMBER_PW, MEMBER_NAME, CREATED_AT
+	</sql>
+	<insert id="memberInsert" parameterType="memberDTO">
+		insert into members(<include refid="memberBaseColumns"/>)
+		values (#{memberNum}, #{memberId}, #{memberPw}, #{memberName}, sysdate)
+	</insert>
+	
+	<select id="memberSelectList" resultType="memberDTO">
+		select <include refid="memberBaseColumns"/> from members
+	</select>
+	
+	<select id="memberSelectOne" resultType="memberDTO">
+		select <include refid="memberBaseColumns"/> from members
+		where member_num = #{memberNum}
+	</select>
+	
+	<update id="memberUpdate" parameterType="memberDTO">
+		update members set
+		member_num = #{memberNum}
+		, member_name = #{memberName}
+		, member_id = #{memberId}
+		where member_num = #{memberNum}
+	</update>
+	
+	<delete id="memberDelete" parameterType="string">
+		delete from members
+		where member_num = #{memberNum}
+	</delete>
+</mapper>

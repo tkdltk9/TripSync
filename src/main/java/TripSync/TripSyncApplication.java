@@ -16,7 +16,7 @@ public class TripSyncApplication {
 	}
 	@RequestMapping("/")
 	public String index() {
-		return "thymeleaf/";
+		return "thymeleaf/index";
 	}
 	
 }
